@@ -44,7 +44,7 @@ CMD php artisan route:cache
 CMD php artisan config:cache
 
 # Serve app
-CMD php artisan serve --host=0.0.0.0 --port=563
+CMD php artisan serve --host=0.0.0.0 --port=80
 EXPOSE 563
 
 # Expose port 80 and start php-fpm server

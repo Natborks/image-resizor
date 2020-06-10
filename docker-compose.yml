@@ -14,7 +14,7 @@ services:
       APP_URL: http://ec2-3-235-244-40.compute-1.amazonaws.com
     working_dir: /var/www
     volumes:
-        - ./:/var/www
+      - ./:/var/www
     networks:
       - thanos
 

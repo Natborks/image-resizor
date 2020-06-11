@@ -4,7 +4,7 @@ services:
   #PHP Service
   thanosapp:
     build:
-      context: .
+      context: ./
       dockerfile: Dockerfile
     image: php:7.4-fpm
     container_name: thanosapp
@@ -21,12 +21,12 @@ services:
   #Nginx Service
   nginx:
     image: nginx:alpine
-    container_name: nginx
+    container_name: thanosnginx
     restart: unless-stopped
     tty: true
     ports:
       #- "80:80"
-      - "12000:80"
+      - 12000:80
     volumes:
       - ./:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/

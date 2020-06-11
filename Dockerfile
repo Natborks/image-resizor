@@ -32,25 +32,27 @@ RUN composer install
 RUN chown -R $USER:www-data storage
 RUN chown -R $USER:www-data bootstrap/cache
 RUN chown -R $USER:www-data public
-RUN chmod -R 775 storage
-RUN chmod -R 775 bootstrap/cache
-RUN chown -R 775 public
 
 # Copy existing application directory contents
 COPY . /var/www
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www
 COPY --chown=$USER:www-data . /var/www
+RUN chmod -R 775 storage
+RUN chmod -R 775 bootstrap/cache
+RUN chown -R 775 public
 
 # Change current user to www
-USER www
+USER www-data
 
 # Laravel cache
 CMD php artisan optimize:clear
 CMD php artisan view:cache
 CMD php artisan route:cache
 CMD php artisan config:cache
+
+# Optimize
+CMD php artisan optimize
 
 # Serve app
 CMD php artisan serve --host=0.0.0.0 --port=80

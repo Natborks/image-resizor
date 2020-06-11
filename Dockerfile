@@ -19,9 +19,6 @@ RUN docker-php-ext-install pdo
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
-# Install dependencies
-RUN composer install
-
 # Permissions
 RUN chown -R $USER:www-data storage
 RUN chown -R $USER:www-data bootstrap/cache
@@ -29,6 +26,9 @@ RUN chown -R $USER:www-data public
 
 # Copy existing application directory contents
 COPY . /var/www
+
+# Install dependencies
+RUN composer install
 
 # Copy existing application directory permissions
 COPY --chown=$USER:www-data . /var/www

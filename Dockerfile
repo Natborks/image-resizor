@@ -13,7 +13,8 @@ RUN apt-get update -y && apt-get install -y \
     git \
     npm \
     curl \
-    libonig-dev
+    libonig-dev \
+    php7.4-gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install pdo
 

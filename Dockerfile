@@ -15,18 +15,12 @@ RUN apt-get update -y && apt-get install -y \
     curl \
     libonig-dev
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN docker-php-ext-install pdo pdo_mysql
-
-RUN curl -sL https://deb.nodesource.com/setup_13.x  | bash -
+RUN docker-php-ext-install pdo
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
 # Install dependencies
 RUN composer install
-
-# Add user for laravel application
-#RUN groupadd -g 1000 www
-#RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Permissions
 RUN chown -R $USER:www-data storage
@@ -57,7 +51,3 @@ CMD php artisan optimize
 # Serve app
 CMD php artisan serve --host=0.0.0.0 --port=80
 EXPOSE 80
-
-# Expose port 80 and start php-fpm server
-#EXPOSE 80
-#CMD ["php-fpm"]

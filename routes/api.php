@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Auth\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,9 +13,29 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/upload','ImageController@resize');
-Route::get('/download/{filename}', 'ImageController@download');
+// Route::fallback(function () {
+//     return response()->json(['error' => 'Not Found!'], 404);
+// });
+
+
+
+Route::post('/register', 'Auth\RegisterController@register');
+//Route::post('/login', 'Auth\AuthController@login');
+Route::post('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@login']);
+//Route::post('login', 'Auth\LoginController@login');
+
+
+
+
+//Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::post('/upload','ImageController@resize');
+    Route::get('/download/{filename}', 'ImageController@download');
+//});
+
+// Route::middleware(['auth:sanctum'])->group(function () {
+//   Route::get('/users', 'UserController@index');
+// });

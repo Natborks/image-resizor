@@ -167,6 +167,7 @@ return [
          */
 
         Intervention\Image\ImageServiceProvider::class,
+        Spatie\DirectoryCleanup\DirectoryCleanupServiceProvider::class,
 
         /*
          * Application Service Providers...

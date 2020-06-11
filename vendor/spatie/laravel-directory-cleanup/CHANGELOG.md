@@ -2,7 +2,28 @@
 
 All notable changes to `laravel-directory-cleanup` will be documented in this file
 
-## 1.2.4 - 2019-01-27
+## 1.5.1 - 2020-04-30
+
+- fixed: set parameter minutes is wrong into method deleteFilesOlderTha… (#36)
+
+## 1.5.0 - 2020-03-03
+
+- add support for Laravel 7
+
+## 1.4.1 - 2019-12-12
+
+- performance improvements (#34)
+
+## 1.4.0 - 2019-09-04
+
+- add support for Laravel 6
+
+## 1.3.0 - 2019-02-27
+
+- drop support for Laravel 5.7 and lower
+- drop support for PHP 7.1 and lower
+
+## 1.2.4 - 2019-02-27
 
 - add support for Laravel 5.8
 

@@ -43,6 +43,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function username()
+    {
+        return 'accoundID';
+    }
+
     // public function login(Request $request)
     // {
     //     $request->validate([
@@ -64,25 +69,26 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         try {
+
             $request->validate([
-                'email' => 'email|required',
+                'accountID' => 'required',
                 'password' => 'required'
                 ]);
 
-                $credentials = request(['email', 'password']);
+                $credentials = request(['accountID', 'password']);
 
                 if (!Auth::attempt($credentials)) {
                     return response()->json([
                         'status_code' => 401,
-                        'message' => 'Unauthorized'
+                        'message' => 'Unauthorized! Please check your credentials'
                     ]);
                 }
 
-                $user = User::where('email', $request->email)->first();
+                $user = User::where('accountID', $request->accountID)->first();
 
                 if (! $user || ! Hash::check($request->password, $user->password)) {
                     throw ValidationException::withMessages([
-                        'email' => ['The provided credentials are incorrect.'],
+                        'accountID' => ['The provided credentials are incorrect.'],
                     ]);
                 }
 
@@ -91,7 +97,7 @@ class LoginController extends Controller
                     'status_code' => 200,
                     'access_token' => $tokenResult,
                     'token_type' => 'Bearer',
-            ]);
+             ]);
         } catch (Exception $error) {
             return response()->json([
                 'status_code' => 500,

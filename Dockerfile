@@ -31,8 +31,10 @@ RUN composer install
 # Permissions
 RUN chown -R $USER:www-data storage
 RUN chown -R $USER:www-data bootstrap/cache
+RUN chown -R $USER:www-data public
 RUN chmod -R 775 storage
 RUN chmod -R 775 bootstrap/cache
+RUN chown -R 775 public
 
 # Copy existing application directory contents
 COPY . /var/www

@@ -8,6 +8,11 @@ use App\ImageModel;
 class ImageController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     public function resize(ImageRequest $request)
     {
         $validatedData = $request->validated();

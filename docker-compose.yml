@@ -7,11 +7,12 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: php:7.4-fpm
+    command: php artisan serve --host=0.0.0.0 --port=80
     container_name: thanosapp
     restart: unless-stopped
     tty: true
     ports:
-      - 11600:80
+      - "11600:80"
       #- 11600:443
       #- 11600:9000
     environment:

@@ -3,10 +3,7 @@ FROM php:7.4-fpm
 # Set working directory
 WORKDIR /var/www
 
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-
 RUN apt-get update -y && apt-get install -y \
-    software-properties-common \
     openssl \
     zip \
     unzip \ 
@@ -15,9 +12,9 @@ RUN apt-get update -y && apt-get install -y \
     curl \
     libonig-dev
 
-RUN add-apt-repository ppa:ondrej/php && apt-get install -y \
-    php7.4-gd \
-    php7.4-mysql
+#RUN apt-get install -y \
+#    php7.4-gd \
+#    php7.4-mysql
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -32,6 +29,8 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli
 # Enable
 RUN docker-php-ext-enable pdo_mysql
 RUN docker-php-ext-enable gd
+
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
 # Copy existing application directory contents
 COPY . /var/www

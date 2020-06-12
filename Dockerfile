@@ -40,18 +40,29 @@ RUN docker-php-ext-enable gd
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
 # Copy existing application directory contents
-COPY . /var/www
+#COPY . /var/www
 
 # Permissions
-RUN chown -R $USER:www-data storage
-RUN chown -R $USER:www-data bootstrap/cache
-RUN chown -R $USER:www-data public
+#RUN chown -R $USER:www-data storage
+#RUN chown -R $USER:www-data bootstrap/cache
+#RUN chown -R $USER:www-data public
 
 # Copy existing application directory permissions
-COPY --chown=$USER:www-data . /var/www
-RUN chmod -R 775 storage
-RUN chmod -R 775 bootstrap/cache
-RUN chown -R 775 public
+#COPY --chown=$USER:www-data . /var/www
+#RUN chmod -R 775 storage
+#RUN chmod -R 775 bootstrap/cache
+#RUN chown -R 775 public
+
+# Add user for Laravel application
+RUN groupadd -g 1000 www
+RUN useradd -u 1000 -ms /bin/bash -g www www
+
+COPY . /var/www
+
+# Copy directory permissions
+COPY --chown=www:www . /var/www
+
+USER www
 
 # Install dependencies
 RUN composer install

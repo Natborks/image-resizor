@@ -37,7 +37,7 @@ services:
     container_name: thanosdb
     restart: unless-stopped
     tty: true
-    expose:
+    ports:
       - "11601:3306"
     environment:
       MYSQL_DATABASE: laravel

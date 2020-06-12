@@ -3,6 +3,14 @@ FROM php:7.4-fpm
 # Set working directory
 WORKDIR /var/www
 
+# Add user for Laravel application
+RUN groupadd -g 1000 www
+RUN useradd -u 1000 -ms /bin/bash -g www www
+
+# Copy directory permissions
+COPY --chown=www:www . /var/www
+
+USER www
 #USER root
 #RUN rm /var/lib/apt/lists/lock
 
@@ -39,9 +47,6 @@ RUN docker-php-ext-enable gd
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
-# Copy existing application directory contents
-#COPY . /var/www
-
 # Permissions
 #RUN chown -R $USER:www-data storage
 #RUN chown -R $USER:www-data bootstrap/cache
@@ -53,16 +58,8 @@ ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 #RUN chmod -R 775 bootstrap/cache
 #RUN chown -R 775 public
 
-# Add user for Laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-
+# Copy existing application directory contents
 COPY . /var/www
-
-# Copy directory permissions
-COPY --chown=www:www . /var/www
-
-USER www
 
 # Install dependencies
 RUN composer install

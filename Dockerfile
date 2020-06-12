@@ -5,7 +5,7 @@ WORKDIR /var/www
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
-RUN apt-get update -y && apt-get install -y \
+RUN add-apt-repository ppa:ondrej/php && apt-get update -y && apt-get install -y \
     openssl \
     zip \
     unzip \ 

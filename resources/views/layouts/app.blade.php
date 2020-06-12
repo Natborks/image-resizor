@@ -10,7 +10,7 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Scripts -->
-  <script src="/js/app.js" defer></script>
+  <!-- <script src="/js/app.js" defer></script> -->
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,7 +23,7 @@
   <link href="/css/scrolling-nav.css" rel="stylesheet">
 
   <!-- Styles -->
-  <!-- <link href="/css/app.css" rel="stylesheet"> -->
+  <link href="/css/app.css" rel="stylesheet">
 </head>
 <body id="page-top">
    <!-- Navigation -->
@@ -51,7 +51,7 @@
 
   <header class="bg-primary text-white">
     <div class="container text-center">
-      <h1>Team Thanos Image resizor</h1>
+      <h1>Team Thanos Image Resizor</h1>
     </div>
   </header>
 

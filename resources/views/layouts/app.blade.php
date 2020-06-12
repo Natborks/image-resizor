@@ -10,20 +10,20 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="/js/app.js" defer></script>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
   <!-- Bootstrap core CSS  -->
-  <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template  -->
-  <link href="{{ asset('css/scrolling-nav.css') }}" rel="stylesheet">
+  <link href="/css/scrolling-nav.css" rel="stylesheet">
 
   <!-- Styles -->
-  <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+  <!-- <link href="/css/app.css" rel="stylesheet"> -->
 </head>
 <body id="page-top">
    <!-- Navigation -->
@@ -68,13 +68,13 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom JavaScript for this theme -->
-  <script src="{{ asset('js/scrolling-nav.js') }}"></script>
+  <script src="/js/scrolling-nav.js"></script>
 </body>
 </html>

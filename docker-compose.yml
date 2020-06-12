@@ -27,7 +27,7 @@ services:
       - thanosdb
     volumes:
       - ./:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+#      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - thanos
 
@@ -44,7 +44,7 @@ services:
       MYSQL_ROOT_PASSWORD: your_mysql_root_password
     volumes:
       - ./dbdata:/var/lib/mysql/
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+#      - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - thanos
 

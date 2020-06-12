@@ -4,16 +4,6 @@ FROM php:7.4-fpm
 WORKDIR /var/www
 
 USER root
-
-# Add user for Laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-
-# Copy directory permissions
-COPY --chown=www:www . /var/www
-
-USER www
-#USER root
 #RUN rm /var/lib/apt/lists/lock
 
 RUN apt-get update -y && apt-get install -y \
@@ -59,6 +49,15 @@ ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 #RUN chmod -R 775 storage
 #RUN chmod -R 775 bootstrap/cache
 #RUN chown -R 775 public
+
+# Add user for Laravel application
+RUN groupadd -g 1000 www
+RUN useradd -u 1000 -ms /bin/bash -g www www
+
+# Copy directory permissions
+COPY --chown=www:www . /var/www
+
+USER www
 
 # Copy existing application directory contents
 COPY . /var/www

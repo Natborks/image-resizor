@@ -3,6 +3,8 @@ FROM php:7.4-fpm
 # Set working directory
 WORKDIR /var/www
 
+USER root
+
 # Add user for Laravel application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www

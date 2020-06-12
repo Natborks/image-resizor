@@ -5,14 +5,17 @@ WORKDIR /var/www
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
-RUN add-apt-repository ppa:ondrej/php && apt-get update -y && apt-get install -y \
+RUN apt-get update -y && apt-get install -y \
+    software-properties-common \
     openssl \
     zip \
     unzip \ 
     git \
     npm \
     curl \
-    libonig-dev \
+    libonig-dev
+
+RUN add-apt-repository ppa:ondrej/php && apt-get install -y \
     php7.4-gd \
     php7.4-mysql
 

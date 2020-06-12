@@ -17,11 +17,11 @@ services:
       #- 11600:9000
     environment:
       APP_URL: https://imageresize.microapi.dev
-      DB_HOST: thanosdb
-      DB_PORT: 3306
+      DB_HOST: http://localhost
+      DB_PORT: 11601
       DB_DATABASE: laravel
       DB_USERNAME: root
-      DB_PASSWORD: your_mysql_root_password
+      DB_PASSWORD: 
     working_dir: /var/www
     depends_on:
       - thanosdb
@@ -38,10 +38,10 @@ services:
     restart: unless-stopped
     tty: true
     expose:
-      - "3306"
+      - "11601:3306"
     environment:
       MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+      MYSQL_ROOT_PASSWORD: 
     volumes:
       - ./dbdata:/var/lib/mysql/
 #      - ./mysql/my.cnf:/etc/mysql/my.cnf

@@ -1,23 +1,27 @@
 {
   "openapi" : "3.0.0",
   "info" : {
-    "title" : "team thanos",
+    "title" : "Team thanos",
+    "description" : "Dockerized ImageResizer Written in PHP Laravel",
     "version" : "1.0.0"
   },
   "servers" : [ {
     "url" : "https://imageresize.microapi.dev"
-  } ],
-  "security" : [ {
-    "ApiKeyAuth" : [ ]
-  }, {
-    "BearerAuth" : [ ]
   } ],
   "paths" : {
     "/v1/register" : {
       "post" : {
         "tags" : [ "Register" ],
         "summary" : "Register new user",
-        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body"
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "content" : {
@@ -29,6 +33,26 @@
             }
           }
         }
+      }
+    },
+    "/v1/login" : {
+      "post" : {
+        "tags" : [ "Login" ],
+        "summary" : "Login user",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuthSample" : [ "write_pets", "read_pets" ]
+        } ]
       }
     },
     "/v1/download/{filename}" : {
@@ -48,29 +72,129 @@
         "responses" : {
           "200" : {
             "description" : "makes file available for download"
+          },
+          "401" : {
+            "description" : "API key is missing or invalid",
+            "headers" : {
+              "Authenticate" : {
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
           }
-        }
+        },
+        "security" : [ {
+          "ApiKeyAuth" : [ ]
+        }, {
+          "BearerAuth" : [ ]
+        } ]
       }
     },
     "/v1/upload" : {
       "post" : {
+        "tags" : [ "Upload" ],
         "summary" : "Upload image",
-        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body_1"
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "description" : "Created"
+          },
+          "401" : {
+            "description" : "API key is missing or invalid",
+            "headers" : {
+              "Authenticate" : {
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
           }
-        }
+        },
+        "security" : [ {
+          "ApiKeyAuth" : [ ]
+        }, {
+          "BearerAuth" : [ ]
+        } ]
       }
     }
   },
   "components" : {
     "schemas" : {
+      "body_1" : {
+        "type" : "object",
+        "properties" : {
+          "width" : {
+            "type" : "integer"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "Image" : {
+            "type" : "string",
+            "format" : "binary"
+          }
+        }
+      },
+      "inline_response_200_1" : {
+        "type" : "object",
+        "properties" : {
+          "status_code" : {
+            "type" : "integer"
+          },
+          "access_token" : {
+            "type" : "string"
+          },
+          "token_type" : {
+            "type" : "string"
+          }
+        }
+      },
       "inline_response_200" : {
         "type" : "object",
         "properties" : {
           "token" : {
             "type" : "string"
+          }
+        }
+      },
+      "body" : {
+        "type" : "object",
+        "properties" : {
+          "accountID" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "password_confirmation" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "responses" : {
+      "UnauthorizedError" : {
+        "description" : "API key is missing or invalid",
+        "headers" : {
+          "Authenticate" : {
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string"
+            }
           }
         }
       }
@@ -84,6 +208,16 @@
       "BearerAuth" : {
         "type" : "http",
         "scheme" : "bearer"
+      },
+      "oAuthSample" : {
+        "type" : "oauth2",
+        "description" : "This API uses OAuth 2 with the implicit grant flow. [More info](https://api.example.com/docs/auth)",
+        "flows" : {
+          "password" : {
+            "tokenUrl" : "https://imageresize.microapi.dev/v1/login",
+            "scopes" : { }
+          }
+        }
       }
     }
   }

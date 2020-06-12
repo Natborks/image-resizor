@@ -3,6 +3,9 @@ FROM php:7.4-fpm
 # Set working directory
 WORKDIR /var/www
 
+#USER root
+#RUN rm /var/lib/apt/lists/lock
+
 RUN apt-get update -y && apt-get install -y \
     openssl \
     zip \
@@ -10,7 +13,11 @@ RUN apt-get update -y && apt-get install -y \
     git \
     npm \
     curl \
-    libonig-dev
+    libonig-dev \
+    zlib1g-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev
 
 #RUN apt-get install -y \
 #    php7.4-gd \

@@ -6,3 +6,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+* {
+    font-family: $font-family-sans-serif;
+    line-height: $line-height-base;
+}

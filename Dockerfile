@@ -16,7 +16,7 @@ RUN apt-get update -y && apt-get install -y \
     libonig-dev \
     php7.4-gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN docker-php-ext-install pdo
+RUN docker-php-ext-install pdo pdo-mysql
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
@@ -48,6 +48,9 @@ CMD php artisan config:cache
 
 # Optimize
 CMD php artisan optimize
+
+# Migrate
+CMD php artisan migrate
 
 # Serve app
 #CMD php artisan serve --host=0.0.0.0 --port=80

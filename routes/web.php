@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/documentation', 'MainController@documentation')->name('docs');
+Route::view('/phpinfo', 'phpinfo')->name('phpinfo');

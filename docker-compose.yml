@@ -17,8 +17,8 @@ services:
       #- 11600:9000
     environment:
       APP_URL: https://imageresize.microapi.dev
-      DB_HOST: http://localhost
-      DB_PORT: 11601
+      DB_HOST: thanosdb
+      DB_PORT: 3306
       DB_DATABASE: laravel
       DB_USERNAME: root
       DB_PASSWORD: 

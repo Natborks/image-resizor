@@ -24,6 +24,8 @@
 
   <!-- Styles -->
   <link href="/css/app.css" rel="stylesheet">
+
+  @yield('styles')
 </head>
 <body id="page-top">
    <!-- Navigation -->
@@ -76,5 +78,7 @@
 
   <!-- Custom JavaScript for this theme -->
   <script src="/js/scrolling-nav.js"></script>
+
+  @yield('scripts')
 </body>
 </html>

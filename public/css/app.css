@@ -10943,3 +10943,7 @@ a.text-dark:focus {
   margin-bottom: 5px;
 }
 
+block.section {
+  padding-top: 0px;
+}
+

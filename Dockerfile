@@ -57,8 +57,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Copy directory permissions
 COPY --chown=www:www . /var/www
 
-USER www
-
 # Copy existing application directory contents
 COPY . /var/www
 
@@ -66,7 +64,8 @@ COPY . /var/www
 RUN composer install
 
 # Change current user to www
-USER www-data
+#USER www-data
+USER www
 
 # Laravel cache
 CMD php artisan optimize:clear

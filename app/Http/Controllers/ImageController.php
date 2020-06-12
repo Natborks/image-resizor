@@ -29,7 +29,7 @@ class ImageController extends Controller
 
         if(file_exists($path))
             return response()->json([
-                'path'  => env('APP_URL', 'http://localhost:8000') . '/api/download/' . $filename
+                'path'  => env('APP_URL', 'http://localhost:8000') . '/v1/download/' . $filename
             ], 200);
         else {
             return response()->json([

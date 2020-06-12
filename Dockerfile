@@ -3,6 +3,8 @@ FROM php:7.4-fpm
 # Set working directory
 WORKDIR /var/www
 
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+
 RUN apt-get update -y && apt-get install -y \
     openssl \
     zip \
@@ -16,8 +18,6 @@ RUN apt-get update -y && apt-get install -y \
     php7.4-mysql
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install pdo pdo-mysql
-
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
 # Copy existing application directory contents
 COPY . /var/www

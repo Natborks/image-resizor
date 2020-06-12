@@ -5,6 +5,7 @@ Takes image in parameters, and resizes. Height and width should be between 1 and
 A Web Browser and Internet Access.
 
 ## How to Use
+
 ### Method ```GET```
 Url: https://baseurl/api/dowload{filename}
 Makes file available for download at the specified url
@@ -20,7 +21,7 @@ payload:
 * [Laravel] - PHP Framework
 
 ## Authors
-**Team Thanon**
+**Team Thanos**
 
 ## Acknowledgments
 HNGi7 Team

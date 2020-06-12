@@ -16,9 +16,9 @@ class ImageModel extends Model
 
         $image_resize = Image::make(public_path('thumbnail/' . $filename));
         $image_resize->fit($height, $width);
-        $path = public_path('thumbnail/') .$filename;
+        //$path = public_path('thumbnail/') .$filename;
         $image_resize->save(public_path('thumbnail/') .$filename);
-        
+
         return $filename;
     }
 }

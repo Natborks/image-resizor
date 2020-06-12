@@ -20,7 +20,7 @@ RUN apt-get update -y && apt-get install -y \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # GD
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-png=/usr/include/ --with-jpeg=/usr/include/ \
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd
 
 # MySQL

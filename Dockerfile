@@ -26,6 +26,10 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 # MySQL
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
+# Enable
+RUN docker-php-ext-enable pdo_mysql
+RUN docker-php-ext-enable gd
+
 # Copy existing application directory contents
 COPY . /var/www
 

@@ -1,6 +1,6 @@
 
 *.md~Stashed changes
 README.md
-README.md
-README.md
 *.md
+node_modules
+vendor

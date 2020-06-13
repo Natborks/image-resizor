@@ -51,13 +51,13 @@
     </div>
   </nav>
 
-  <header class="bg-primary text-white">
+  <!-- <header class="bg-primary text-white">
     <div class="container text-center">
       <h1>Team Thanos Image Resizor</h1>
     </div>
-  </header>
+  </header> -->
 
-  @yield('content')
+  <!-- @yield('content') -->
 
 
     <!-- Footer -->

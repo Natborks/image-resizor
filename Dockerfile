@@ -5,6 +5,7 @@ WORKDIR /var/www
 
 USER root
 
+# install dependency
 RUN apt-get update -y && apt-get install -y \
     openssl \
     zip \

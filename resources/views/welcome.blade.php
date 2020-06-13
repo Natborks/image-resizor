@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('styles')
@@ -21,10 +22,13 @@
         window.ui = ui
         }
     </script>
+    <!-- <script>
+        window.location.href = "https://app.swaggerhub.com/apis-docs/Team-thanos/Team-thanos/1.0.0"
+    </script> -->
 @endsection
 
-    @section('content')
-    <section id="about">
+    <!-- @section('content') -->
+    <!-- <section id="about">
         <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -36,9 +40,9 @@
             </div>
         </div>
         </div>
-    </section>
+    </section> -->
 
-    <section id="services" class="bg-light">
+    <!-- <section id="services" class="bg-light">
         <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -47,44 +51,13 @@
             </div>
         </div>
         </div>
-    </section>
+    </section> -->
 
-    <section id="usage">
-        <div class="container">
+    <div>
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h2>Usage</h2>
                 <div id="swagger-ui"></div>
-                <div class = "api">
-                    <p class="lead">
-                        Send a POST request to
-                        <a href="#">https://imageresize.microapi.dev/v1/upload</a> with the following payload: <br>
-                        <pre>
-                        payload:
-                        {
-                            “image”: “file”,
-                            “width”: 0,
-                            “height”: 0,
-                        }</pre>
-                    </p>
-                    <p class = "lead">
-                        Description: This endpoint takes an image in parameters, and resizes according to the height and width provided.
-                        Note that the image should not be more than 2mb, and the width and height parameters should be between 0 and 10001.
-                    </p>
-                </div>
-                <div class = "api">
-                    <p class = "lead">
-                        Send a GET request to
-                        <a href="#">https://imageresize.microapi.dev/v1/download/{filename}</a><br>
-                        Makes file available for download at the specified url
-                        <br>
-                        Description: This endpoint makes the resized image available for download at the specified url
-                    </p>
-                </div>
             </div>
         </div>
-        </div>
-    </section>
+    </div>
     @stop
-
-

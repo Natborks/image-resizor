@@ -54,7 +54,7 @@ paths:
                       accountID:
                        type: string
           
-        401:
+        404:
           description: 'page not found'
           content:
             application/json:
@@ -128,39 +128,16 @@ paths:
 
 
 
-
-  /v1/download/{filename}:
-    get:
-      security:
-       - ApiKeyAuth: []
-       - BearerAuth: []
-      summary: 'Dowmload the file'
-      tags:
-        - Download
-      
-      parameters: 
-        - in: path
-          name: filename
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: 'makes file available for download'
-        '401':
-          $ref: "#/components/responses/UnauthorizedError"
-          
   /v1/upload:
     post:
       tags: 
-        - Upload
+        - URL Input
       security:
         - ApiKeyAuth: []
         - BearerAuth: []
-      summary: Upload image
+      summary: URL Input
       requestBody:
         content:
-          multipart/form-data:
             schema:
               type: object
               properties:
@@ -168,9 +145,9 @@ paths:
                   type: integer
                 height:
                   type: integer
-                Image:
+                URL:
                   type: string
-                  format: binary
+                  format: url
               required: 
                 - width
                 - height
@@ -178,20 +155,27 @@ paths:
       responses:
         200:
           description: Created
-        '401':
-          $ref: "#/components/responses/UnauthorizedError"
-        401:
-          description: 'Error Code'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  stutus_code:
-                    type: integer
-                  message:
-                    type: string
-                    description: This file is too large.
+  
+    security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+          schema:
+            $ref : '/v1/download/{filename}:'
+          
+          '401':
+            $ref: "#/components/responses/UnauthorizedError"
+          323:
+            description: 'Error Code'
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    stutus_code:
+                      type: integer
+                    message:
+                      type: string
+                      description: This file is too large.
 components:
   responses:
     UnauthorizedError:

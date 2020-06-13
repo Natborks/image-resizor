@@ -1,10 +1,15 @@
 # Dockerised MicroService for Image Upload and Resizing.
+<<<<<<< HEAD
 Takes image in parameters, and resizes. Height and width should be between 1 and 1000. Image size should be less than 2mb
+=======
+Takes image in parameters, and resizes. Height and width should be between 1 and 1000. File size should be less than 2mb
+>>>>>>> 24746d0d4f1bb5c41ee48c8f8ba572a0f0a07a31
 
 ### Prerequisites
 A Web Browser and Internet Access.
 
 ## How to Use
+
 ### Method ```GET```
 Url: https://baseurl/api/dowload{filename}
 Makes file available for download at the specified url
@@ -20,7 +25,7 @@ payload:
 * [Laravel] - PHP Framework
 
 ## Authors
-**Team Thanon**
+**Team Thanos**
 
 ## Acknowledgments
 HNGi7 Team

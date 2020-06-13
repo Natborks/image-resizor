@@ -24,10 +24,21 @@
         },
         "responses" : {
           "200" : {
+            "description" : "Ok",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Error: Unprocessable Entity",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_422"
                 }
               }
             }
@@ -39,6 +50,15 @@
       "post" : {
         "tags" : [ "Login" ],
         "summary" : "Login user",
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body_1"
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "content" : {
@@ -48,11 +68,18 @@
                 }
               }
             }
+          },
+          "401" : {
+            "description" : "Error Code",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
           }
-        },
-        "security" : [ {
-          "oAuthSample" : [ "write_pets", "read_pets" ]
-        } ]
+        }
       }
     },
     "/v1/download/{filename}" : {
@@ -101,7 +128,7 @@
           "content" : {
             "multipart/form-data" : {
               "schema" : {
-                "$ref" : "#/components/schemas/body_1"
+                "$ref" : "#/components/schemas/body_2"
               }
             }
           }
@@ -134,6 +161,19 @@
   "components" : {
     "schemas" : {
       "body_1" : {
+        "required" : [ "accountID", "password" ],
+        "type" : "object",
+        "properties" : {
+          "accountID" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          }
+        }
+      },
+      "body_2" : {
+        "required" : [ "Image", "height", "width" ],
         "type" : "object",
         "properties" : {
           "width" : {
@@ -145,6 +185,14 @@
           "Image" : {
             "type" : "string",
             "format" : "binary"
+          }
+        }
+      },
+      "inline_response_422_errors" : {
+        "type" : "object",
+        "properties" : {
+          "accountID" : {
+            "type" : "string"
           }
         }
       },
@@ -171,6 +219,7 @@
         }
       },
       "body" : {
+        "required" : [ "accountID", "password", "password_confirmation" ],
         "type" : "object",
         "properties" : {
           "accountID" : {
@@ -181,6 +230,29 @@
           },
           "password_confirmation" : {
             "type" : "string"
+          }
+        }
+      },
+      "inline_response_401" : {
+        "type" : "object",
+        "properties" : {
+          "status_code" : {
+            "type" : "integer"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Unauthorized! Please check your credentials"
+          }
+        }
+      },
+      "inline_response_422" : {
+        "type" : "object",
+        "properties" : {
+          "message" : {
+            "type" : "string"
+          },
+          "errors" : {
+            "$ref" : "#/components/schemas/inline_response_422_errors"
           }
         }
       }
@@ -208,16 +280,6 @@
       "BearerAuth" : {
         "type" : "http",
         "scheme" : "bearer"
-      },
-      "oAuthSample" : {
-        "type" : "oauth2",
-        "description" : "This API uses OAuth 2 with the implicit grant flow. [More info](https://api.example.com/docs/auth)",
-        "flows" : {
-          "password" : {
-            "tokenUrl" : "https://imageresize.microapi.dev/v1/login",
-            "scopes" : { }
-          }
-        }
       }
     }
   }
